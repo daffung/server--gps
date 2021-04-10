@@ -26,4 +26,4 @@ io.on('connection', (socket) => {
         console.log('Disconnected')
     })
 })
-//app.listen(4000,()=>{console.log("listening")})
+server.listen(process.env.PORT || 5000, () => console.log(`Server has started.`));
