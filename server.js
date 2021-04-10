@@ -2,8 +2,12 @@
 const express = require('express')
 const app = express()
 const cors = require('cors')
+const server = require('http').createServer(app)
 app.use(cors())
-const io = require('socket.io')(3000, {
+
+//app.use(express.static(__dirname+'clients'))
+
+const io = require('socket.io')(server, {
     cors: {
         "origin": "*",
         "methods": "GET,HEAD,PUT,PATCH,POST,DELETE",
@@ -22,3 +26,4 @@ io.on('connection', (socket) => {
         console.log('Disconnected')
     })
 })
+//app.listen(4000,()=>{console.log("listening")})
