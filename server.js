@@ -15,7 +15,7 @@ const io = require('socket.io')(3000, {
 io.on('connection', (socket) => {
     //socket.emit('hi', 'Hello World')
     socket.on('sendData',(data)=>{
-        //console.log(data)
+        console.log(data)
        socket.broadcast.emit('renderData',{data:data})
     })
     socket.on('disconnect',()=>{
