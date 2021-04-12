@@ -17,7 +17,7 @@ const io = require('socket.io')(server, {
 });
 
 io.on('connection', (socket) => {
-    socket.emit('hi', 'Hello World')
+    socket.emit('hi', {date:Date.now()})
     socket.on('sendData',(data)=>{
         console.log(data)
        socket.broadcast.emit('renderData',{data:data})
