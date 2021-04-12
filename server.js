@@ -20,7 +20,7 @@ io.on('connection', (socket) => {
     socket.emit('hi', {date:Date.now()})
     socket.on('sendData',(data)=>{
         console.log(data)
-       socket.broadcast.emit('renderData',{data:data})
+       socket.broadcast.emit('renderData',{data:data,date:Date.now()})
     })
     socket.on('disconnect',()=>{
         console.log('Disconnected')
