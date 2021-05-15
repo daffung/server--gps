@@ -25,7 +25,7 @@ const lastLocation = require('./models/lastLocation')
 
 
 
-app.get('/lastlocation',async (req,res)=>{
+app.get('/',async (req,res)=>{
     try{const existData = await lastLocation.find({})
     res.status(200).send(existData)}
     catch(e){res.send(e)}
@@ -33,7 +33,7 @@ app.get('/lastlocation',async (req,res)=>{
 
 app.get('/123',(req,res)=>{
     
-    res.send('123456789')
+    res.send('12389')
 })
 
 
