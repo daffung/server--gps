@@ -25,17 +25,14 @@ const lastLocation = require('./models/lastLocation')
 
 
 
-app.get('/',async (req,res)=>{
+app.get('/lastlocation',async (req,res)=>{
     if(db.readyState == 1)
     {try{const existData = await lastLocation.find({})
     res.status(200).send(existData)}
     catch(e){res.send(e)}}
 })
 
-app.get('/123',(req,res)=>{
-    
-    res.send({"data":"dada"})
-})
+
 
 
 
