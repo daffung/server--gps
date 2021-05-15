@@ -15,6 +15,8 @@ let newGeoJson
 
 const mongoose = require('mongoose')
 mongoose.connect(process.env.DATABASE_URL, { useNewUrlParser: true, useUnifiedTopology:true })
+mongoose.set('useCreateIndex', true);
+mongoose.set('useFindAndModify', false);
 const db = mongoose.connection
 db.on('error', error => console.error(error))
 db.once('open', () => console.log('Connected to Mongoose'))
@@ -24,11 +26,15 @@ const lastLocation = require('./models/lastLocation')
 
 
 app.get('/lastlocation',async (req,res)=>{
-    const existData = await lastLocation.find({})
-    res.status(200).send(existData)
+    try{const existData = await lastLocation.find({})
+    res.status(200).send(existData)}
+    catch(e){res.send(e)}
 })
 
-
+app.get('/123',(req,res)=>{
+    
+    res.send('123456789')
+})
 
 
 
@@ -50,14 +56,20 @@ io.on('connection', (socket) => {
         io.emit('renderData',{data:data.data,date:data.date})
     })
     socket.on('disconnect',async ()=>{
-      
-        const lastData = new lastLocation({name:JSON.parse(newGeoJson).properties.title,lastLocation:newGeoJson})
+        if(newGeoJson!==undefined)
+      {try {
+          let data = JSON.parse(newGeoJson)
+        const lastData = new lastLocation({name:data.properties.title,lastLocation:newGeoJson})
         const savedData = await lastLocation.findOneAndUpdate({name:lastData.name},{lastLocation:lastData.lastLocation})
         if(savedData === null){
             await lastData.save()
         }
         
         console.log('Disconnected')
+      } catch (error) {
+          console.log(error)
+      }}
+        
     })
 })
 //console.log(Date.now())
