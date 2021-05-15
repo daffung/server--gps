@@ -33,7 +33,7 @@ app.get('/',async (req,res)=>{
 
 app.get('/123',(req,res)=>{
     
-    res.send('12389')
+    res.send({"data":"dada"})
 })
 
 
