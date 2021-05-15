@@ -28,7 +28,7 @@ const lastLocation = require('./models/lastLocation')
 app.get('/',async (req,res)=>{
     try{const existData = await lastLocation.find({})
     res.status(200).send(existData)}
-    catch(e){res.send(e)}
+    catch(e){res.send('there are error')}
 })
 
 app.get('/123',(req,res)=>{
