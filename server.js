@@ -46,7 +46,7 @@ const io = require('socket.io')(server, {
 io.on('connection', (socket) => {
     socket.emit('hi', {date:Date.now()})
     socket.on('sendData',(data)=>{
-        newGeoJson = data
+        newGeoJson = data.data
         io.emit('renderData',{data:data.data,date:data.date})
     })
     socket.on('disconnect',async ()=>{
