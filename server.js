@@ -28,7 +28,10 @@ app.get('/lastlocation',async (req,res)=>{
     res.status(200).send(existData)
 })
 
-
+app.get('/123',(req,res)=>{
+    
+    res.send('123456789')
+})
 
 
 
