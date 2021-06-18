@@ -48,7 +48,7 @@ const io = require('socket.io')(server, {
 
 
 io.on('connection', (socket) => {
-    socket.emit('hi', {date:"Xin chuc mung ket noi thanh cong"})
+    socket.emit('hi', "Xin chuc mung ket noi thanh cong")
     socket.on('sendData',(data)=>{
         console.log(data.data)
         newGeoJson = data.data
