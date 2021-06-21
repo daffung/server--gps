@@ -13,7 +13,11 @@
     "http": "0.0.1-security",
     "mongoose": "^5.12.7",
     "node-fetch": "^2.6.1",
+<<<<<<< HEAD
     "socket.io": "^2.3.0"
+=======
+    "socker.io": "^2.3.0"
+>>>>>>> 088d6cad65bae2b198a9c9b6ec83959a69c3b2dc
   },
   "devDependencies": {
     "nodemon": "^2.0.7"

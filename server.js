@@ -1,4 +1,9 @@
+<<<<<<< HEAD
 require('dotenv').config()
+=======
+
+    require('dotenv').config()
+>>>>>>> 088d6cad65bae2b198a9c9b6ec83959a69c3b2dc
 
 
 const express = require('express')
