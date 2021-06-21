@@ -51,7 +51,7 @@ io.on('connection', (socket) => {
     socket.emit('hi', "Xin chuc mung ket noi thanh cong")
     socket.on('sendData',(data)=>{
         console.log(data.data)
-        newGeoJson = data.data
+        newGeoJson = JSON.stringify(data.data)
         io.emit('renderData',{data:data.data,date:data.date})
     })
     socket.on('disconnect',async ()=>{
