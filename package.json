@@ -13,8 +13,7 @@
     "http": "0.0.1-security",
     "mongoose": "^5.12.7",
     "node-fetch": "^2.6.1",
-    "socker.io": "^0.0.0-alpha-beta",
-    "socket.io": "^4.0.1"
+    "socker.io": "^2.3.0"
   },
   "devDependencies": {
     "nodemon": "^2.0.7"
