@@ -1,6 +1,5 @@
-if (process.env.NODE_ENV !== 'production') {
-    require('dotenv').config()
-  }
+require('dotenv').config()
+
 
 const express = require('express')
 const app = express()
@@ -26,15 +25,13 @@ const lastLocation = require('./models/lastLocation')
 
 
 app.get('/lastlocation',async (req,res)=>{
-    try{const existData = await lastLocation.find({})
+    if(db.readyState == 1)
+    {try{const existData = await lastLocation.find({})
     res.status(200).send(existData)}
-    catch(e){res.send(e)}
+    catch(e){res.send(e)}}
 })
 
-app.get('/123',(req,res)=>{
-    
-    res.send('123456789')
-})
+
 
 
 
@@ -50,9 +47,10 @@ const io = require('socket.io')(server, {
 
 
 io.on('connection', (socket) => {
-    socket.emit('hi', {date:Date.now()})
+    socket.emit('hi', "Xin chuc mung ket noi thanh cong")
     socket.on('sendData',(data)=>{
-        newGeoJson = data.data
+        console.log(data.data)
+        newGeoJson = JSON.stringify(data.data)
         io.emit('renderData',{data:data.data,date:data.date})
     })
     socket.on('disconnect',async ()=>{
@@ -65,11 +63,11 @@ io.on('connection', (socket) => {
             await lastData.save()
         }
         
-        console.log('Disconnected')
+        console.log('Disconnected and saved')
       } catch (error) {
           console.log(error)
       }}
-        
+     else console.log('Disconnected')
     })
 })
 //console.log(Date.now())
